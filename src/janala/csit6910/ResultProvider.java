@@ -9,11 +9,12 @@ import java.util.List;
  */
 public interface ResultProvider {
 
-	public List<Object[]> results = new ArrayList<Object[]>();
-	
+	// we should take care of array type in here
+	// at least prepare for one dimension array
+	public List<Object[][]> results = new ArrayList<Object[][]>();
 	
 	public void setResult();
 	
-	
+	public void getResult();
 	
 }

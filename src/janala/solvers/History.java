@@ -321,7 +321,7 @@ public class History {
                 removeHistory();
             }
         }
-        // csit6910-- modified here
+        // csit6910 -- collect input goes here
         System.out.println("-------------------------------solveAndSave [" + inputCollector.getClassname() +"]");
         inputCollector.collectInputFile();
     }
@@ -333,7 +333,7 @@ public class History {
         for (int i=pathConstraintIndex; i>=0; i--) {
             pathConstraint.get(i).accept(solver);
         }
-        // csit6910-- modified here -- trace purpose
+        // csit6910 -- trace purpose
         System.out.println("-------------------------------solveAt---1");
         return solver.solve();
     }
@@ -377,7 +377,7 @@ public class History {
         for (int i=pathConstraint.size()-1; i>=0; i--) {
             pathConstraint.get(i).accept(solver);
         }
-        // csit6910-- modified here -- trace purpose
+        // csit6910 -- trace purpose
         System.out.println("-------------------------------solveAt---2");
         return solver.solve();
     }

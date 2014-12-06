@@ -13,18 +13,18 @@ import java.util.List;
 import janala.config.Config;
 
 /**
- * capture input generate after solve.
+ * Capture input generated after solved.
  * */
 public class InputCollector {
 
-	private List<Object[]> inputs;
+	protected List<Object[]> inputs;
 	private String classname;
 	
 	public InputCollector(String clazz) {
 		inputs = new ArrayList<Object[]>();
 
 		// unlike from offline, we can get classname from Config.mainClass
-		// on-the-fly process get classname from -ea in vmArguments
+		// online process get classname from -ea in vmArguments
 		if (clazz == null || clazz.isEmpty()) {
 
 			// sun.java.command will give us both the main class (or jar) and the program arguments
@@ -35,16 +35,15 @@ public class InputCollector {
 			}
 
 			// alternative approach
-			/*
-			java.lang.management.RuntimeMXBean mx = java.lang.management.ManagementFactory.getRuntimeMXBean();
-	  	java.util.List<String> vmArguments = mx.getInputArguments();
-	  	for (String s: vmArguments) {
-	  		System.out.println("args: " + s);
-	  		if (s.contains("-ea")) {
-	  			clazz = s.substring(4, s.length());
-	  			break;
-	  		}
-	  	}*/
+//			java.lang.management.RuntimeMXBean mx = java.lang.management.ManagementFactory.getRuntimeMXBean();
+//	  	java.util.List<String> vmArguments = mx.getInputArguments();
+//	  	for (String s: vmArguments) {
+//	  		System.out.println("args: " + s);
+//	  		if (s.contains("-ea")) {
+//	  			clazz = s.substring(4, s.length());
+//	  			break;
+//	  		}
+//	  	}
 		}
 		this.classname = clazz;
 	}
@@ -68,8 +67,8 @@ public class InputCollector {
 			}
 
 			inputs.add(v.toArray());			
-			//writeFileInput();
-			
+			//writeFileInput(); // trace purpose
+
 			System.out.println("input: " + inputs.size());
 			JunitTestWriter jw = new JunitTestWriter(classname, "JanalaTest", System.getProperty("user.dir"));
 			jw.writeJunitTest(inputs);

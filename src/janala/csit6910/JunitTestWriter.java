@@ -26,7 +26,7 @@ public class JunitTestWriter {
 	}
 
 	/**
-	 * Write junit PUTS by supplied inputs, if file already exists we append it.
+	 * Write JUnit PUTS by supplied inputs, if file already exists we append it.
 	 * */
 	public void writeJunitTest(List<Object[]> inputs) {
 		File workingDir = getDir();
@@ -159,7 +159,7 @@ public class JunitTestWriter {
 	/**
 	 * Create initial template file for PUTS
 	 * */
-	private void createJunitTemplate(File file) {
+	protected void createJunitTemplate(File file) {
 		if (!file.exists())
 			try {
 				file.createNewFile();
@@ -231,9 +231,10 @@ public class JunitTestWriter {
 
 	/** 
 	 * Normalize Object string value to match with code representation string.<br />
-	 * for example: if Object were String, we add double quote in beginning and end.
+	 * for example: if Object were String, we add double quote in beginning and end.<br />
+	 * TODO : move to Util class
 	 * */
-  private String toCodeString(Object o) {
+  protected String toCodeString(Object o) {
     String val = o.toString();
     Class<?> c;
 
